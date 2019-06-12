@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<script>
+$(document).ready(function(){
+    var products = [
+        {
+            name: "carbon black",
+            image: "https://www.hydroblaster.com/images/4MP3.jpg",
+            color: "chrome warwick",
+            oldPrice: 30,
+            newPrice: 25.75,
+            markdown: -15
+        },
+        {
+            name: "yellow hills",
+            image: "https://www.hydroblaster.com/images/4MP1.jpg",
+            color: "gold",
+            oldPrice: 40,
+            newPrice: 20,
+            markdown: -50
+        },
+        {
+            name: "dark lax",
+            image: "https://www.hydroblaster.com/images/4MP2.jpg",
+            color: "black",
+            oldPrice: 40,
+            newPrice: 34,
+            markdown: -15
+        },
+        {
+            name: "sky one",
+            image: "https://www.hydroblaster.com/images/4MP4.jpg",
+            color: "air",
+            oldPrice: 25,
+            newPrice: 22.50,
+            markdown: -10
+        }
+    ];
+    var prodData = [];
+    for (i = 0; i < products.length; i++) {
+        prodData.push('<div class="card"><div class="markDot">' + products[i].markdown + '%</div><img class="card-img-top" src="' + products[i].image + '" alt="' + products[i].name + '"><div class="card-body"><p class="card-title">' + products[i].name + '&nbsp; &#8231; &nbsp;' + products[i].color + '</p><p><b><span>$' + products[i].oldPrice + '</span>&nbsp;$' + products[i].newPrice + '</p></b></div></div>');
+    }
+    $('#product_line').html(prodData);
+    $('#arrow_left').click(function(){
+        $('#product_line').html('');
+        var element = products.shift();
+        products.push(element);
+        var newArray = [];
+        for (i = 0; i < products.length; i++) {
+            newArray.push('<div class="card"><div class="markDot">' + products[i].markdown + '%</div><img class="card-img-top" src="' + products[i].image + '" alt="' + products[i].name + '"><div class="card-body"><p class="card-title">' + products[i].name + '&nbsp; &#8231; &nbsp;' + products[i].color + '</p><p><b><span>$' + products[i].oldPrice + '</span>&nbsp;$' + products[i].newPrice + '</p></b></div></div>');
+        }
+        $('#product_line').html(newArray);
+    });
+    $('#arrow_right').click(function(){
+        $('#product_line').html('');
+        var element = products.pop();
+        products.unshift(element);
+        var newArray = [];
+        for (i = 0; i < products.length; i++) {
+            newArray.push('<div class="card"><div class="markDot">' + products[i].markdown + '%</div><img class="card-img-top" src="' + products[i].image + '" alt="' + products[i].name + '"><div class="card-body"><p class="card-title">' + products[i].name + '&nbsp; &#8231; &nbsp;' + products[i].color + '</p><p><b><span>$' + products[i].oldPrice + '</span>&nbsp;$' + products[i].newPrice + '</p></b></div></div>');
+        }
+        $('#product_line').html(newArray);
+    });
+});
+</script>
+<body>
+    <div class="container-fluid" id="top">
+        <p>SALES: <b>Up to 50% OFF </b>on selected items</p>
+    </div>
+    <div class="container-fluid" id="banner">
+        <img src="https://www.hydroblaster.com/images/random_bg/back_4.jpg" alt="Banner Image"/>
+    </div>
+    <div id="midline" class="container-fluid">
+        <div class="row">
+            <h5>COLLECTIONS</h5>
+            <a href="#">SEE COLLECTION</a>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col prod_arrow" id="arrow_left"><img src="https://www.pinclipart.com/picdir/big/72-724380_arrow-svg-png-icon-free-download-onlinewebfonts-arrow.png" alt="arrow"></div>
+            <div class="col prod_arrow" id="arrow_right"><img src="https://www.pinclipart.com/picdir/big/72-724380_arrow-svg-png-icon-free-download-onlinewebfonts-arrow.png" alt="arrow"></div>
+        </div>
+        <div class="card-group" id="product_line"></div>
+    </div>
+</body>
+<style>
+#top {
+    background-color: rgb(71, 101, 202);
+    color: white;
+    padding: 7px;
+    text-align: center;
+    padding-top: 15px;
+}
+#banner img {
+    width: 100%;
+}
+#midline {
+    margin: 30px 0;
+}
+#midline a {
+    position: absolute;
+    right: 30px;
+    font-weight: bold;
+    border-bottom: 5px solid rgb(219, 219, 216);
+    padding-bottom: 5px;
+}
+#midline h5 {
+    margin-left: 30px;
+    border-bottom: 5px solid rgb(219, 219, 216);
+    padding-bottom: 5px;
+}
+.markDot {
+    background-color: rgb(226, 83, 27);
+    position: absolute;
+    border-radius: 50%;
+    color: #fff;
+    padding: 15px 10px;
+    right: -10px;
+    top: -10px;
+}
+.card {
+    margin-left: 15px;
+    margin-right: 15px;
+    border: none;
+}
+#product_line {
+    text-transform: uppercase;
+    color: rgba(53, 53, 53, .5);
+}
+#product_line b {
+    color: #000;
+}
+#product_line img {
+    width: 100%;
+}
+#product_line p {
+    text-align: center;
+}
+#product_line span {
+    color: rgb(182, 0, 0);
+    text-decoration: line-through;
+}
+.prod_arrow {
+    position:absolute;
+    background-color: rgb(219, 219, 216);
+    border: 1px solid rgb(219, 219, 216);
+    width: 1%;
+    height: 243px;
+    padding-top: 6%;
+    padding-left: 4px;
+    transition: .5s;
+    cursor: pointer;
+}
+.prod_arrow:hover {
+    background-color: #fff;
+}
+.prod_arrow img {
+    height:10px;
+}
+#arrow_left img {
+    transform: rotate(180deg);
+}
+#arrow_left {
+    left: 10px;
+}
+#arrow_right {
+    right: 10px;
+}
+@media screen and (max-width:1600px){
+    .prod_arrow {
+        height: 210px;
+    }
+}
+@media screen and (max-width:1400px){
+    .prod_arrow {
+        height: 180px;
+    }
+}
+@media screen and (max-width:1300px){
+    .prod_arrow {
+        height: 170px;
+    }
+}
+@media screen and (max-width:1140px){
+    .prod_arrow {
+        height: 150px;
+    }
+}
+@media screen and (max-width:991px){
+    .prod_arrow {
+        display: none;
+    }
+}
+</style>
+</html>
